@@ -1,3 +1,52 @@
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+//componets
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+//views
+import Home from './views/Home';
+import DashBoard from './views/DashBoard';
+import Profile from './views/Profile';
+//import NotFound from './views/NotFound';
+const rutas = [
+  {
+    path:'dashboard/*',
+    element:<DashBoard />
+  },
+  {
+    path:'/profile/:id',
+    element:<Profile />
+  },
+  {
+    path:'*',
+    element:<Navigate to='/' />
+  },
+]
+function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />}>
+            <Route path='/' element={<div>welcome</div>} />
+            <Route path='/login' element={<div>login</div>} />
+            <Route path='/register' element={<div>register</div>} />
+          </Route>
+          <Route path='/dashboard/*' element={<DashBoard />} />
+          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='*' element={<Navigate to='/' />} />
+          {/*<Route path='*' element={<NotFound />} />*/}
+
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
+  );
+}
+
+export default App;
+
+/*
 import logo from './logo.svg';
 import './App.css';
 
@@ -23,3 +72,4 @@ function App() {
 }
 
 export default App;
+*/

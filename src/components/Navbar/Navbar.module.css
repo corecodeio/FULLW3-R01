@@ -1,0 +1,10 @@
+.navbar-0{
+    background-color: aquamarine;
+    display: flex;
+    justify-content: space-around;
+}
+.navbar-1{
+    background-color: rgb(255, 172, 127);
+    display: flex;
+    justify-content: space-around;
+}
