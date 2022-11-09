@@ -1,3 +1,5 @@
+import React, {useEffect, useContext} from 'react';
+import { ListUserContext } from './Context/ListUserContest';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 //componets
 import Navbar from './components/Navbar';
@@ -6,8 +8,10 @@ import Footer from './components/Footer';
 import Home from './views/Home';
 import DashBoard from './views/DashBoard';
 import Profile from './views/Profile';
+import ListUsers from './views/ListUsers';
+import Effect from './views/Effect';
 //import NotFound from './views/NotFound';
-const rutas = [
+/*const rutas = [
   {
     path:'dashboard/*',
     element:<DashBoard />
@@ -20,8 +24,21 @@ const rutas = [
     path:'*',
     element:<Navigate to='/' />
   },
-]
+]*/
 function App() {
+  const {setList} = useContext(ListUserContext);
+  const getListUsersAPI = async ()=>{
+      const response = await fetch('https://reqres.in/api/users?page=2');
+      const responseJson = await response.json();
+      //console.log(responseJson)
+      setList(responseJson.data);
+  }
+
+  useEffect(()=>{
+      getListUsersAPI();
+      // eslint-disable-next-line
+  },[]);
+
   return (
     <>
       <BrowserRouter>
@@ -34,7 +51,12 @@ function App() {
           </Route>
           <Route path='/dashboard/*' element={<DashBoard />} />
           <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/users' element={<ListUsers/>}/>
+          <Route path='/effect' element={<Effect/>}/>
           <Route path='*' element={<Navigate to='/' />} />
+          {/*rutas.map((item,index)=>{
+            return <Route key={index} path={item.path} element={item.element}/>
+          })*/}
           {/*<Route path='*' element={<NotFound />} />*/}
 
         </Routes>
