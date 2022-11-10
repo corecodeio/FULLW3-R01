@@ -6,6 +6,7 @@ const Effect = () => {
   const handleMouse = () => {
     setOpen(!open);
   };
+  
   return (
     <div>
       <button onClick={handleMouse}>
