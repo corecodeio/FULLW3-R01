@@ -9,9 +9,13 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector(state => state.auth);
   const { pathname } = useLocation();
-
+  const navigate = useNavigate();
+  const redirect = ()=>{
+    navigate(`/dashboard`)
+  }
   return (
     <div>
+      <button onClick={redirect}>GO</button>
       <h3>Navbar</h3>
       {/*<a href='/'>home</a>
       <a href='/dashboard'>dashboard</a>*/}
